@@ -1,0 +1,31 @@
+version: '3'
+services:
+  map:
+    container_name: map
+    image: ghcr.io/the-microservice-dungeon/map/mapservice:latest
+    env_file:
+      - mapService.env
+      - ../services.env
+    ports:
+      - "8081:3000"
+    expose:
+      - "3000"
+    networks:
+      - mapNet
+      - mainNet
+
+  postgresmap:
+    container_name: postgresmap
+    image: postgres:13
+    restart: always
+    env_file:
+      - mapDB.env
+    networks:
+      - mapNet
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+networks:
+  mapNet:
+    external: true
+  mainNet:
+    external: true

@@ -1,0 +1,39 @@
+version: '3'
+services:
+  game:
+    container_name: game
+    image: ghcr.io/the-microservice-dungeon/game/gameservice:latest
+    env_file:
+      - gameService.env
+      - ../services.env
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    networks:
+      - gameNet
+      - mainNet
+
+  mysqlgame:
+    container_name: mysqlgame
+    image: mysql:8
+    restart: always
+    env_file:
+      - gameDB.env
+    expose:
+      - "3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    networks:
+      - gameNet
+    volumes:
+      - dbdata:/var/lib/mysql
+volumes:
+  dbdata:
+networks:
+  gameNet:
+    external: true
+  mainNet:
+    external: true

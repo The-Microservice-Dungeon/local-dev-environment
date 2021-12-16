@@ -1,0 +1,16 @@
+version: '3'
+services:
+  postgresmap:
+    container_name: postgresmap
+    image: postgres:13
+    restart: always
+    env_file:
+      - mapDB.env
+    networks:
+      - mapNet
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+
+networks:
+  mapNet:
+    external: true

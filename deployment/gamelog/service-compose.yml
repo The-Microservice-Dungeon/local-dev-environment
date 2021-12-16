@@ -1,0 +1,42 @@
+version: '3'
+services:
+  gamelog:
+    container_name: gamelog
+    image: ghcr.io/the-microservice-dungeon/gamelog/gamelogservice:latest
+    env_file:
+      - gamelogService.env
+      - ../services.env
+    ports:
+      - "8084:8080"
+    expose:
+      - "8080"
+    networks:
+      - gamelogNet
+      - mainNet
+
+
+  mysqlgamelog:
+    container_name: mysqlgamelog
+    image: mysql:8
+    restart: always
+    env_file:
+      - gamelogDB.env
+    expose:
+      - "3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    networks:
+      - gamelogNet
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+    dbdata:
+
+networks:
+  gamelogNet:
+    external: true
+  mainNet:
+    external: true

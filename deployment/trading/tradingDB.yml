@@ -1,0 +1,24 @@
+version: '3'
+services:
+  mysqltrading:
+    container_name: mysqltrading
+    image: mysql:8
+    restart: always
+    env_file:
+      - tradingDB.env
+    expose:
+      - "3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    networks:
+      - tradingNet
+    volumes:
+      - dbdata:/var/lib/mysql
+volumes:
+  dbdata:
+
+networks:
+  tradingNet:
+    external: true
