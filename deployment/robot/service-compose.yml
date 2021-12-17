@@ -3,6 +3,7 @@ services:
   robot:
     container_name: robot
     image: ghcr.io/the-microservice-dungeon/robot/robotservice:latest
+    restart: unless-stopped
     env_file:
       - robotService.env
       - ../services.env

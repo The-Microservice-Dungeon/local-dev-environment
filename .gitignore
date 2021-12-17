@@ -268,4 +268,5 @@ Temporary Items
 
 # exluding Service file
 exclude.txt
-!tmp/*
+tmp/*
+**/tmp/

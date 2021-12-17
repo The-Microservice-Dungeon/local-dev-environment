@@ -3,6 +3,7 @@ services:
   trading:
     container_name: trading
     image: ghcr.io/the-microservice-dungeon/trading/tradingservice:latest
+    restart: unless-stopped
     env_file:
             - tradingService.env
             - ../services.env

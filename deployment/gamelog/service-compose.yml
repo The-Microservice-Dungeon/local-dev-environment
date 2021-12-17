@@ -3,6 +3,7 @@ services:
   gamelog:
     container_name: gamelog
     image: ghcr.io/the-microservice-dungeon/gamelog/gamelogservice:latest
+    restart: unless-stopped
     env_file:
       - gamelogService.env
       - ../services.env

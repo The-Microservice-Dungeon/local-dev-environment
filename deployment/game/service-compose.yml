@@ -3,6 +3,7 @@ services:
   game:
     container_name: game
     image: ghcr.io/the-microservice-dungeon/game/gameservice:latest
+    restart: unless-stopped
     env_file:
       - gameService.env
       - ../services.env

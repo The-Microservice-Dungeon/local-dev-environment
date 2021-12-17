@@ -3,6 +3,7 @@ services:
   map:
     container_name: map
     image: ghcr.io/the-microservice-dungeon/map/mapservice:latest
+    restart: unless-stopped
     env_file:
       - mapService.env
       - ../services.env
