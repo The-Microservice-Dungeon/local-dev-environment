@@ -4,6 +4,8 @@ services:
     container_name: robot
     image: ghcr.io/the-microservice-dungeon/robot/robotservice:latest
     restart: unless-stopped
+    depends_on: 
+      - mariadb-robot
     env_file:
       - robotService.env
       - ../services.env
@@ -14,6 +16,7 @@ services:
     networks:
       - robotNet
       - mainNet
+ 
   mariadb-robot:
     container_name: mariadb-robot
     image: mariadb:10.6.5

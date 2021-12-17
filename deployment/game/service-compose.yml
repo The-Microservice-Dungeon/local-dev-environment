@@ -4,6 +4,8 @@ services:
     container_name: game
     image: ghcr.io/the-microservice-dungeon/game/gameservice:latest
     restart: unless-stopped
+    depends_on: 
+      - mysqlgame
     env_file:
       - gameService.env
       - ../services.env
@@ -14,6 +16,7 @@ services:
     networks:
       - gameNet
       - mainNet
+    
 
   mysqlgame:
     container_name: mysqlgame
