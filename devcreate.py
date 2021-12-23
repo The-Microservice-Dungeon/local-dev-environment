@@ -1,6 +1,7 @@
 
 import sys, getopt,os
-
+from classes.player_service import Player_Service
+import json
 
 
 def strip_new_lines(mylist):
@@ -49,7 +50,7 @@ def set_up_environment():
     #pulls all needed images from github
     for line in lines:
         line = line.rstrip("\n")
-        os.system(f"cd deployment/{line} && docker-compose -f service-compose.yml pull ")
+       # os.system(f"mkdir player_service && cd player_service/{line} && docker-compose -f service-compose.yml pull ")
         
     #Creates all networks
     with open('config/networks.txt') as fp:
@@ -136,10 +137,22 @@ def list_all_services():
         print(line)
 
 
+def player_service_creation():
+    
+    if os.path.isfile('classes/player_configs/config.json'):
+        
+        player = Player_Service('classes/player_configs/config.json')
+    else:
+        player = Player_Service()
+    
+    return player
+    
+
+
 def main(argv):
     
     #reading arguments and options from the commandline
-    opts, args = getopt.getopt(argv,"ildrse: ")
+    opts, args = getopt.getopt(argv,"ildrse:p", ["player"])
 
 
 
@@ -148,16 +161,19 @@ def main(argv):
         
         if opt == '-r':
             run_environment()
-        if opt == '-s':
+        elif opt == '-s':
             set_up_environment()
-        if opt == '-d':
+        elif opt == '-d':
             stop_environment()
-        if opt == '-e':
+        elif opt == '-e':
             exclude_services(arg)
-        if opt == '-i':
+        elif opt == '-i':
             include_services()
-        if opt == '-l':
+        elif opt == '-l':
             list_all_services()
+        elif (opt == '-p') or (opt == "--player"):
+            player = player_service_creation()
+            player.run_player()
 
 
 
