@@ -23,3 +23,4 @@ python3 devcreate.py [OPTION]
 | -d |   | Stops all containers  |
 | -i  |   | removes the excluding file  |
 | -l  |   | Lists all services (including the excluded services) |
+| -p |   | runs local Player service in Docker |
