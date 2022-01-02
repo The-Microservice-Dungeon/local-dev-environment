@@ -26,7 +26,10 @@ services:
     networks:
       - mapNet
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+      - dbdata:/var/lib/postgresql/data:z
+volumes:
+  dbdata:
+
 networks:
   mapNet:
     external: true
