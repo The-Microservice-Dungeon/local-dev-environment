@@ -24,3 +24,9 @@ python3 devcreate.py [OPTION]
 | -i  |   | removes the excluding file  |
 | -l  |   | Lists all services (including the excluded services) |
 | -p |   | runs local Player service in Docker |
+
+### Hints
+
+* `python3 devcreate.py -s` always needs to be run before `-r`
+* Before running `-p`, you need to manually create a directory `./classes/player_service`. It will not be 
+persisted, there is an entry in .gitignore.
