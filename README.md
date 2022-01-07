@@ -24,6 +24,7 @@ python3 devcreate.py [OPTION]
 | -i  |   | removes the excluding file  |
 | -l  |   | Lists all services (including the excluded services) |
 | -p |   | runs local Player service in Docker |
+| -u |  | updates all docker images
 
 ### Hints
 
