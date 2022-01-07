@@ -29,4 +29,4 @@ python3 devcreate.py [OPTION]
 
 * `python3 devcreate.py -s` always needs to be run before `-r`
 * Before running `-p`, you need to manually create a directory `./classes/player_service`. It will not be 
-persisted, there is an entry in .gitignore.
+persisted, there is an entry in .gitignore. In addition please create the directory `./classes/player_configs` 
