@@ -16,6 +16,7 @@ services:
     networks:
       - gameNet
       - mainNet
+      - playerNet
     
 
   mysqlgame:
@@ -37,6 +38,8 @@ services:
 volumes:
   dbdata:
 networks:
+  playerNet:
+    external: true
   gameNet:
     external: true
   mainNet:
