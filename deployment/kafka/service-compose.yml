@@ -29,9 +29,12 @@ services:
     networks:
       - kafkaNet
       - mainNet
+      - playerNet
 
 networks:
   kafkaNet:
     external: true
   mainNet:
+    external: true
+  playerNet:
     external: true
