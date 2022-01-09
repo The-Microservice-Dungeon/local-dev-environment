@@ -5,3 +5,4 @@ mapNet
 robotNet
 tradingNet
 mainNet
+playerNet
