@@ -137,6 +137,20 @@ def list_all_services():
         print(line)
 
 
+def update_all_service_images():
+    """Updates all service images
+    """
+    with open('config/services.txt') as fp:
+        lines = fp.readlines()
+
+    lines = strip_new_lines(lines)
+    lines = remove_service_from_list(lines)
+
+    for line in lines:
+        line = line.rstrip("\n")
+        os.system(f"cd deployment/{line} &&  docker-compose -f service-compose.yml pull" )
+
+
 def player_service_creation():
     
     if os.path.isfile('classes/player_configs/config.json'):
@@ -152,7 +166,7 @@ def player_service_creation():
 def main(argv):
     
     #reading arguments and options from the commandline
-    opts, args = getopt.getopt(argv,"ildrse:p", ["player"])
+    opts, args = getopt.getopt(argv,"ildrsue:p", ["player"])
 
 
 
@@ -171,6 +185,8 @@ def main(argv):
             include_services()
         elif opt == '-l':
             list_all_services()
+        elif opt == '-u':
+            update_all_service_images()
         elif (opt == '-p') or (opt == "--player"):
             player = player_service_creation()
             player.run_player()
