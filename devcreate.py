@@ -164,14 +164,12 @@ def player_service_creation():
 def delete_containers_networks():
     
     stop_environment()
-    os.system("docker rmi $(docker images | grep 'dungeon')")
-    os.system("docker rmi $(docker images | grep 'mariadb')")
-    os.system("docker rmi $(docker images | grep 'mysql')")
-    os.system("docker rmi $(docker images | grep 'postgres')")
-    os.system("docker rmi $(docker images | grep 'cp-')")
-    print("Deletet Images of Dungeon containers")
-   
-    
+  
+    with open('config/images.txt') as fp:
+        lines = fp.readlines()
+        lines = strip_new_lines(lines)
+        for line in lines:
+            os.system(f"docker rmi {line}")
 
 
 

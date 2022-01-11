@@ -1,0 +1,10 @@
+mariadb:10.6.5
+postgres:13
+mysql:8
+confluentinc/cp-zookeeper:7.0.1
+confluentinc/cp-kafka:5.2.5
+ghcr.io/the-microservice-dungeon/robot/robotservice:latest
+ghcr.io/the-microservice-dungeon/game/gameservice:latest
+ghcr.io/the-microservice-dungeon/trading/tradingservice:latest
+ghcr.io/the-microservice-dungeon/gamelog/gamelogservice:latest
+ghcr.io/the-microservice-dungeon/map/mapservice:latest
