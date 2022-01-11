@@ -20,7 +20,7 @@ python3 devcreate.py [OPTION]
 |  -s |   | Creates the dev environment  |
 | -r  |   | Runs all containers  |
 | -e  |  [servicename] | Excludes a service from the environment and creates an excluding file  |
-| -d |   | Stops all containers  |
+| -d |  stop, delete | Stops all containers or deletes all containers and images  |
 | -i  |   | removes the excluding file  |
 | -l  |   | Lists all services (including the excluded services) |
 | -p |   | runs local Player service in Docker |
@@ -31,3 +31,4 @@ python3 devcreate.py [OPTION]
 * `python3 devcreate.py -s` always needs to be run before `-r`
 * Before running `-p`, you need to manually create a directory `./classes/player_configs`. It will not be 
 persisted, there is an entry in .gitignore. 
+* `python3 devcreate.py -d delete` will display an error message like: `Error: No such image: confluentinc/cp-zookeeper`. This is caused by the deletition method and can be safely ignored. 

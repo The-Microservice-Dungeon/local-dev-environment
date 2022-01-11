@@ -160,13 +160,26 @@ def player_service_creation():
         player = Player_Service()
     
     return player
+
+def delete_containers_networks():
     
+    stop_environment()
+    os.system("docker rmi $(docker images | grep 'dungeon')")
+    os.system("docker rmi $(docker images | grep 'mariadb')")
+    os.system("docker rmi $(docker images | grep 'mysql')")
+    os.system("docker rmi $(docker images | grep 'postgres')")
+    os.system("docker rmi $(docker images | grep 'cp-')")
+    print("Deletet Images of Dungeon containers")
+   
+    
+
+
 
 
 def main(argv):
     
     #reading arguments and options from the commandline
-    opts, args = getopt.getopt(argv,"ildrsue:p", ["player"])
+    opts, args = getopt.getopt(argv,"ilrsue:p:d:", ["player" ,"delete", "stop"])
 
 
 
@@ -178,7 +191,10 @@ def main(argv):
         elif opt == '-s':
             set_up_environment()
         elif opt == '-d':
-            stop_environment()
+            if arg == "stop":
+                stop_environment()
+            elif arg == "delete":
+                delete_containers_networks()
         elif opt == '-e':
             exclude_services(arg)
         elif opt == '-i':
