@@ -34,5 +34,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Zip Directory
         run: |
-            zip -r release.zip classes/ config/ deployment/ devcreate.py README.md
+            zip -r release_${{ env.TAG }}.zip classes/ config/ deployment/ devcreate.py README.md
+            ls -l
             
