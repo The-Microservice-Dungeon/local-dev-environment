@@ -1,6 +1,9 @@
 
 import sys, getopt,os
 from classes.player_service import Player_Service
+from classes.dev_environment import Dev_Environment
+from classes.dungeon_services import Dungeon_Service
+from classes.dev_env_factory import Dev_Env_Factory
 import json
 
 
@@ -37,9 +40,10 @@ def set_up_environment():
         pulls all needed containers and creates all networks
     """
 
+
    
 
-    #Reads all service names 
+#Reads all service names
     with open('config/services.txt') as fp:
         lines = fp.readlines()
 
@@ -177,7 +181,7 @@ def delete_containers_networks():
 def main(argv):
     
     #reading arguments and options from the commandline
-    opts, args = getopt.getopt(argv,"ilrsue:p:d:", ["player" ,"delete", "stop"])
+    opts, args = getopt.getopt(argv,"ilrsjue:p:d:", ["player" ,"delete", "stop"])
 
 
 
@@ -204,6 +208,12 @@ def main(argv):
         elif (opt == '-p') or (opt == "--player"):
             player = player_service_creation()
             player.run_player()
+        elif opt == '-j':
+            print("test")
+            test = Dev_Env_Factory()
+            test.create_environment()
+
+
 
 
 
