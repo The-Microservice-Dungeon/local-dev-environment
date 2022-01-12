@@ -1,0 +1,53 @@
+#Configuration file for the default dev envirionment
+version: default
+
+Services:
+
+  game:
+     branch:
+      master
+     filepath:
+      deployment/game/
+     git_url:
+      none
+
+  gamelog:
+     branch:
+       master
+     filepath:
+        deployment/gamelog/
+     git_url:
+         none
+
+  map:
+     branch:
+      master
+     filepath:
+       deployment/map/
+     git_url:
+       none
+  robot:
+     branch:
+       master
+     filepath:
+       deployment/robot/
+     git_url:
+       none
+
+  trading:
+     branch:
+       master
+     filepath:
+       deployment/trading/
+     git_url:
+       none
+
+networks:
+  - gameNet
+  - gamelogNet
+  - kafkaNet
+  - mapNet
+  - robotNet
+  - tradingNet
+  - mainNet
+  - playerNet

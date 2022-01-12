@@ -158,7 +158,8 @@ crashlytics-build.properties
 fabric.properties
 # Local History for Visual Studio Code
 .history/
-
+custom_environments/*
+custom_environments
 # Built Visual Studio Code Extensions
 *.vsix
 # Created by .ignore support plugin (hsz.mobi)
