@@ -41,6 +41,13 @@ Services:
        deployment/trading/
      git_url:
        none
+  kafka:
+    branch:
+      master
+    filepath:
+      deployment/kafka
+    git_url:
+      none
 
 networks:
   - gameNet
