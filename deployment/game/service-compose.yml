@@ -8,7 +8,6 @@ services:
       - mysqlgame
     env_file:
       - gameService.env
-      - ../services.env
     ports:
       - "8080:8080"
     expose:
