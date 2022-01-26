@@ -1,4 +1,4 @@
-import json, os
+import json, os, time
 import classes.tools.helper_tools as tool
 
 
@@ -44,9 +44,19 @@ class Dev_Environment:
 
     def run_environment(self):
         """Runs the environment
+
+
         """
         for service in self.services:
-            os.system(f'cd {service.filepath} &&  docker-compose -f service-compose.yml up -d  --remove-orphans ')
+            if service.name == "kafka":
+                os.system(f'cd {service.filepath} &&  docker-compose -f service-compose.yml up -d  --remove-orphans ')
+        
+        print("Giving Kafka some time to start... be patient :-)")
+        time.sleep(60)
+
+        for service in self.services:
+            if service.name != "kafka":
+                os.system(f'cd {service.filepath} &&  docker-compose -f service-compose.yml up -d  --remove-orphans ')
 
     def setup_environment(self):
         """ Environment setup
