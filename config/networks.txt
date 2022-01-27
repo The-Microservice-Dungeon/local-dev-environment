@@ -6,3 +6,4 @@ robotNet
 tradingNet
 mainNet
 playerNet
+fortressNet
