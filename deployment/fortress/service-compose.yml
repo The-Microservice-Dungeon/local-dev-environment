@@ -1,0 +1,35 @@
+version: '3'
+services:
+  fortress:
+    container_name: fortress
+    image: ghcr.io/the-microservice-dungeon/doom_fortress/fortress:latest
+    restart: unless-stopped
+    depends_on: 
+      - redisfortress
+    ports:
+      - "8085:3000"
+    expose:
+      - "3000"
+    networks:
+      - fortressNet
+      - mainNet
+    env_file: 
+      - ../services.env
+      - fortressService.env
+
+  redisfortress:
+    container_name: redisfortress
+    image: redis:latest
+    restart: always
+    networks:
+      - fortressNet
+    volumes:
+      - ./tmp/db:/var/lib/redis/
+volumes:
+  dbdata:
+
+networks:
+  fortressNet:
+    external: true
+  mainNet:
+    external: true
